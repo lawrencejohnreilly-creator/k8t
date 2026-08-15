@@ -103,7 +103,8 @@ const manifest = (origin) => ({
   version: "mws/1",
   name: "K8T",
   spoken: "Katie",
-  purpose: "Conversational agent over the Reilly Protocol Suite, and a reference instrument for Machine-Web Symbiosis.",
+  purpose: "Conversational AI prototype with a deterministic governance layer, aimed at consumer lending. Also a reference instrument for Machine-Web Symbiosis.",
+  disclaimer: "Independent prototype by Lawrence John Reilly Jr. Not affiliated with, commissioned by, or endorsed by Symple Lending. Lending policy text is illustrative, not approved compliance language.",
   specification: "https://datatracker.ietf.org/doc/draft-reilly-mws/",
   symbiosis: {
     human_channel: `${origin}/`,
@@ -131,10 +132,14 @@ const manifest = (origin) => ({
   contact: "lawrencejohnreilly@gmail.com"
 });
 
-const llmsTxt = (origin) => `# K8T (Katie)
+const llmsTxt = (origin) => `# K8T (Katie) — consumer lending governance prototype
 
-Conversational agent over the Reilly Protocol Suite, and a reference instrument
-for Machine-Web Symbiosis (draft-reilly-mws-00).
+Independent prototype by Lawrence John Reilly Jr.; not affiliated with,
+commissioned by or endorsed by Symple Lending. Lending policy text is
+illustrative, not approved compliance language.
+
+A conversational agent with a deterministic governance layer, and a reference
+instrument for Machine-Web Symbiosis (draft-reilly-mws-00).
 
 You are welcome here. Read the manifest first: ${origin}/.well-known/mws.json
 

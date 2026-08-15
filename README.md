@@ -1,7 +1,11 @@
-# K8T (Katie)
+# K8T (Katie) — consumer lending governance prototype
 
-A conversational agent over the Reilly Protocol Suite, built as a reference
-instrument for **Machine-Web Symbiosis** ([draft-reilly-mws-00](https://datatracker.ietf.org/doc/draft-reilly-mws/)).
+Independent prototype by Lawrence John Reilly Jr. Not affiliated with,
+commissioned by, or endorsed by Symple Lending. The lending policy corpus is
+illustrative and is not approved compliance language.
+
+A conversational agent with a governance layer, built on the Reilly Protocol
+Suite and demonstrating **Machine-Web Symbiosis** ([draft-reilly-mws-00](https://datatracker.ietf.org/doc/draft-reilly-mws/)).
 
 The claim MWS makes is that a web surface should serve people and agents from
 the same substance, and disclose how the machine view was assembled. K8T

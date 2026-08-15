@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>K8T — a conversational agent over the Reilly Protocol Suite</title>
-<meta name="description" content="K8T (Katie) answers questions about the Reilly Protocol Suite and shows its work: every answer streams to a human channel and a machine channel at the same time, with a Curation Disclosure Record for each turn." />
+<title>K8T — Conversational AI Governance Prototype for Consumer Lending</title>
+<meta name="description" content="K8T (Katie) — an independent conversational AI prototype for consumer lending. Deterministic guardrails, NPI redaction before the model call, and an attested Curation Disclosure Record for every turn." />
 <link rel="alternate" type="application/json" href="/.well-known/mws.json" title="Machine channel" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,6 +20,7 @@
       <svg viewBox="0 0 32 32" width="28" height="28"><path d="M9 7v18M9 16l8-9M9 16l8 9" stroke="var(--human)" stroke-width="2.6" fill="none" stroke-linecap="round"/><circle cx="24" cy="16" r="3.6" fill="var(--machine)"/></svg>
     </span>
     <span class="wordmark">K8T<em>katie</em></span>
+    <span class="forwhom">Symple Lending<b>prototype</b></span>
   </div>
 
   <div class="status" id="status">
@@ -40,13 +41,14 @@
   <section class="channel human" aria-label="Conversation">
     <div class="thread" id="thread">
       <div class="opening">
-        <p class="eyebrow">Machine-Web Symbiosis, running</p>
-        <h1>Ask about the suite.<br /><span class="dim">Watch both channels answer.</span></h1>
+        <p class="eyebrow">Symple Lending prototype · conversational AI governance</p>
+        <h1>Every answer, and<br /><span class="dim">the evidence behind it.</span></h1>
         <p class="lede">
-          K8T is a conversational agent over twenty-five IETF Internet-Drafts and the live instruments built
-          against them. Every answer it gives you is emitted at the same moment as a machine-readable record:
-          what it retrieved, what it withheld, which tools it ran, and how much of the answer is actually
-          sourced. The right-hand channel is that record, live.
+          K8T is a conversational AI prototype built on twenty-five IETF Internet-Drafts and the live
+          instruments behind them. Switch to <b>Borrower</b> and try to make it quote a rate, promise an
+          approval, or repeat a Social Security number. It will not, and the right-hand channel shows you
+          exactly which control stopped it, under which regulation, on which policy version. Every turn is
+          attested, including the clean ones.
         </p>
         <div class="chips" id="chips" data-for="suite">
           <button type="button">What is Machine-Web Symbiosis?</button>
@@ -74,6 +76,7 @@
         <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </form>
+    <p class="disclaimer">Independent prototype by Lawrence John Reilly Jr. Not affiliated with, commissioned by, or endorsed by Symple Lending. Policy text is illustrative and is not approved compliance language.</p>
     <p class="composer-note" id="composerNote">Answers are grounded in a fixed corpus. Uncited claims are flagged, not hidden.</p>
   </section>
 
