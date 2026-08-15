@@ -80,6 +80,21 @@ button { font: inherit; cursor: pointer; }
   color: var(--muted);
 }
 
+.forwhom {
+  display: flex; flex-direction: column;
+  padding-left: 12px; margin-left: 4px;
+  border-left: 1px solid var(--line);
+  font-family: var(--mono); font-size: 10.5px; line-height: 1.35;
+  letter-spacing: .04em; color: var(--muted);
+}
+.forwhom b { color: var(--machine); font-weight: 400; }
+
+.disclaimer {
+  margin: 12px 2px 0;
+  font-family: var(--mono); font-size: 10px; line-height: 1.6;
+  color: #5F7F8C; max-width: 66ch;
+}
+
 .status { display: flex; align-items: center; gap: 8px; }
 
 .seg {
@@ -165,7 +180,12 @@ button { font: inherit; cursor: pointer; }
 
 .lede { color: #C3D7DE; max-width: 60ch; margin: 0 0 24px; }
 
-.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 14px;
+  animation: slidein .25s ease both;
+}
+.chips[hidden] { display: none; }
 .chips button {
   padding: 8px 13px;
   border: 1px solid var(--line);
@@ -270,6 +290,16 @@ button { font: inherit; cursor: pointer; }
 }
 .composer textarea:focus { outline: none; }
 .composer textarea::placeholder { color: #6F909E; }
+
+#refreshChips {
+  display: grid; place-items: center;
+  width: 40px; height: 40px; border-radius: 11px;
+  border: 1px solid var(--line); background: transparent; color: var(--muted);
+  transition: color .15s, border-color .15s, transform .3s;
+}
+#refreshChips:hover { color: var(--machine); border-color: var(--machine); }
+#refreshChips:active { transform: rotate(-180deg); }
+#refreshChips[aria-expanded="false"] { color: var(--machine); border-color: rgba(56,225,214,.4); }
 
 #send {
   display: grid; place-items: center;
@@ -443,6 +473,10 @@ dialog form button {
 .rail-open .badge {
   display: inline-block; margin-left: 6px; padding: 0 6px;
   border-radius: 999px; background: var(--machine); color: #06222A; font-weight: 500;
+}
+
+@media (max-width: 780px) {
+  .forwhom { display: none; }
 }
 
 @media (max-width: 940px) {

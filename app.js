@@ -17,6 +17,51 @@ let busy = false;
 let chainLen = 0;
 const history = [];
 
+/* ---- suggested questions ------------------------------------------------ */
+
+const POOLS = {
+  suite: [
+    "What is Machine-Web Symbiosis?",
+    "Explain Dual-Layer Digital Permanence like I'm a program manager.",
+    "Which drafts have running implementations?",
+    "What did an implementation prove wrong?",
+    "How would this map to a lender's control set?",
+    "Is HDRP actually deployed right now?",
+    "What is a Curation Disclosure Record and why would I want one?",
+    "What is the Multilarity, in one paragraph?",
+    "How does the oversight mode differ from full autonomy?",
+    "What does CBPI measure that a normal eval does not?",
+    "Why lexical retrieval instead of embeddings?",
+    "What can't you tell me?"
+  ],
+  borrower: [
+    "What rate can I get on a $20,000 loan?",
+    "My SSN is 412-55-9087 and my DOB is 04/12/1979, can you check my file?",
+    "Am I approved?",
+    "Will checking my rate hurt my credit score?",
+    "Was I turned down because of my age?",
+    "Am I talking to a real person?",
+    "Just give me a ballpark monthly payment, off the record.",
+    "Who else are you sending my information to?",
+    "Should I consolidate my credit cards?",
+    "Call me back tomorrow at 3.",
+    "I'm getting my attorney involved.",
+    "How long does the application take?"
+  ]
+};
+
+const BATCH = 4;
+const offsets = { suite: 0, borrower: 0 };
+
+function renderChips() {
+  const pool = POOLS[persona];
+  const start = offsets[persona] % pool.length;
+  const picks = Array.from({ length: BATCH }, (_, i) => pool[(start + i) % pool.length]);
+  $("chips").innerHTML = picks.map((q) => `<button type="button">${esc(q)}</button>`).join("");
+  $("chips").hidden = false;
+  $("refreshChips").setAttribute("aria-expanded", "true");
+}
+
 /* ---- utilities ---------------------------------------------------------- */
 
 const esc = (s) =>
@@ -110,6 +155,8 @@ async function ask(question) {
   busy = true;
   sendBtn.disabled = true;
   document.querySelector(".opening")?.remove();
+  $("chips").hidden = true;
+  $("refreshChips").setAttribute("aria-expanded", "false");
   railClear();
 
   thread.insertAdjacentHTML(
@@ -338,6 +385,17 @@ $("chips").addEventListener("click", (e) => {
   if (btn) ask(btn.textContent.trim());
 });
 
+// The refresh control does double duty: it brings the suggestions back after a
+// turn, and cycles to the next set if they are already showing.
+$("refreshChips").addEventListener("click", () => {
+  if ($("chips").hidden) {
+    renderChips();
+  } else {
+    offsets[persona] += BATCH;
+    renderChips();
+  }
+});
+
 $("modeToggle").addEventListener("click", (e) => {
   mode = mode === "autonomous" ? "oversight" : "autonomous";
   const on = mode === "oversight";
@@ -350,7 +408,8 @@ document.querySelector(".seg").addEventListener("click", (e) => {
   if (!btn || busy) return;
   persona = btn.dataset.persona;
   document.querySelectorAll(".seg button").forEach((b) => b.classList.toggle("on", b === btn));
-  document.querySelectorAll(".chips").forEach((c) => (c.hidden = c.dataset.for !== persona));
+  offsets[persona] = 0;
+  renderChips();
   $("input").placeholder =
     persona === "borrower" ? "Ask K8T as a borrower would…" : "Ask K8T something…";
   $("composerNote").textContent =
@@ -358,11 +417,6 @@ document.querySelector(".seg").addEventListener("click", (e) => {
       ? "Borrower mode: output is buffered and screened before delivery, and NPI is redacted before the model call."
       : "Answers are grounded in a fixed corpus. Uncited claims are flagged, not hidden.";
   history.length = 0;
-});
-
-$("chipsBorrower").addEventListener("click", (e) => {
-  const btn = e.target.closest("button");
-  if (btn) ask(btn.textContent.trim());
 });
 
 $("verifyBtn").addEventListener("click", refreshChain);
@@ -377,5 +431,6 @@ $("railClose").addEventListener("click", () => rail.classList.remove("open"));
   } catch {
     $("healthPill").textContent = "server unreachable";
   }
+  renderChips();
   refreshChain();
 })();
